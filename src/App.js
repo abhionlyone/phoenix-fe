@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Fragment } from "react";
+import { Container } from "semantic-ui-react";
+import Menu from "./menu/menu";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-          Edit <code>src/App.js</code> and save to reload.
-      </header>
-    </div>
-  );
-}
-
-export default App;
+export default () => (
+  <Router>
+    <Fragment>
+      <Menu />
+      <Container>
+        <Route exact path="/" component={Menu} />
+      </Container>
+    </Fragment>
+  </Router>
+);
