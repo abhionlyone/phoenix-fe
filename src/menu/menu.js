@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Image, Menu } from "semantic-ui-react";
 import logo from '../assets/logo.png'
+import {Link} from 'react-router-dom'
 export default () => (
   <Menu>
     <Container>
@@ -8,9 +9,9 @@ export default () => (
         <Image size="small" src={logo} />
       </Menu.Item>
       <Menu.Menu position="right">
-        <Menu.Item as="a" name="item 1">
-          link 1
-        </Menu.Item>
+        <Link to='/' className='item'>
+          Home
+        </Link>
         <Menu.Item as="a" name="item 2">
           link 2
         </Menu.Item>
