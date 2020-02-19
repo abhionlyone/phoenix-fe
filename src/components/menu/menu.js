@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Image, Menu } from "semantic-ui-react";
-import logo from '../assets/logo.png'
+import logo from '../../assets/logo.png'
 import {Link} from 'react-router-dom'
 export default () => (
   <Menu>
