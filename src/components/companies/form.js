@@ -12,6 +12,7 @@ import SemanticDatepicker from "react-semantic-ui-datepickers";
 import "react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css";
 import * as yup from "yup";
 
+
 let schema = yup.object().shape({
   company_name: yup.string().required(),
   state: yup.string().required(),
@@ -20,10 +21,11 @@ let schema = yup.object().shape({
   founded_date: yup.date().required()
 });
 class CompanyForm extends Component {
-  state = { company: {} };
 
   constructor(props) {
     super(props);
+    this.state = {company: {}}
+    console.log(props)
   }
 
   handleChange = (e, data) => {
@@ -32,7 +34,11 @@ class CompanyForm extends Component {
   };
 
   componentDidMount() {
-    this.setState({ company: this.props.company });
+    console.log(this.props)
+  }
+
+  componentWillReceiveProps(props){
+
   }
 
   formSubmit = () => {
@@ -44,7 +50,7 @@ class CompanyForm extends Component {
       })
       .catch(err => {
         console.log(err.errors);
-        err.errors.map(error => {
+        err.errors.forEach(error => {
           this.renderMessage(err.name, error);
         });
       });
