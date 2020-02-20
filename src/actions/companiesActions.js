@@ -1,5 +1,6 @@
 import API from "../utils/API"
 import * as CONSTANTS from './types'
+import * as Toast from '../utils/toastMessage'
 
 export const fetchCompaniesSuccess = companies => {
   return {
@@ -41,20 +42,15 @@ export const fetchCompany = (id) => {
   };
 };
 
-// export const updateCompanySuccess = company => {
-//   return {
-//     type: CONSTANTS.UPDATE_COMPANY_SUCCESS,
-//     payload: company
-//   };
-// }
-
 export const updateCompany = (id, data) => {
   return dispatch => {
     return API.patch(`/companies/${id}`, data)
       .then(response => {
+        Toast.successMessage('Success...', `Successfully updated ${data.company_name}`)
         return response.data
       })
       .catch(error => {
+        Toast.errorMessage('Something went wrong...', 'Please contact support')
         throw error;
       });
   };
@@ -64,9 +60,11 @@ export const addCompany = (data) => {
   return dispatch => {
     return API.post('/companies/', data)
       .then(response => {
+        Toast.successMessage('Success...', `Successfully created ${data.company_name}`)
         return response.data
       })
       .catch(error => {
+        Toast.errorMessage('Something went wrong...', 'Please contact support')
         throw error;
       });
   };

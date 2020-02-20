@@ -8,11 +8,10 @@ class EditCompany extends Component {
   state = {
     company: {}
   };
-  submit = (data, toast) => {
+  submit = (data) => {
     console.log(data, "Will be submitted");
     let { id } = this.props.match.params;
     this.props.updateCompany(id, data);
-    toast("Updated", `${data.company_name} is updated.`, "success");
   };
   componentDidMount() {
     let { id } = this.props.match.params;

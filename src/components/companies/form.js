@@ -7,7 +7,6 @@ import {
   Segment,
   Header
 } from "semantic-ui-react";
-import { SemanticToastContainer, toast } from "react-semantic-toasts";
 import SemanticDatepicker from "react-semantic-ui-datepickers";
 import "react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css";
 import * as yup from "yup";
@@ -36,7 +35,7 @@ class CompanyForm extends Component {
     schema
       .validate(company, { abortEarly: false })
       .then(value => {
-        this.props.onSubmit(company, this.renderMessage);
+        this.props.onSubmit(company);
       })
       .catch(err => {
         console.log(err);
@@ -44,21 +43,6 @@ class CompanyForm extends Component {
           this.renderMessage(err.name, error);
         });
       });
-  };
-
-  renderMessage = (title, description, type = 'error') => {
-    console.log(title, description);
-    toast({
-      type: type,
-      icon: "stop circle",
-      title: title,
-      description: description,
-      animation: "bounce",
-      time: 25000,
-      onClose: () => {},
-      onClick: () => {},
-      onDismiss: () => {}
-    });
   };
 
   render() {
@@ -72,7 +56,6 @@ class CompanyForm extends Component {
     let { title } = this.props;
     return (
       <Segment padded="very" raised>
-        <SemanticToastContainer />
         <Header as="h2">{title}</Header>
         <Form>
           <Form.Group widths="equal">

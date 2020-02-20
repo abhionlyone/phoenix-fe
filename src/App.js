@@ -5,6 +5,7 @@ import Menu from "./components/menu/menu";
 import CompaniesIndex from './components/companies'
 import  NewCompany from './components/companies/new'
 import EditCompany from './components/companies/edit'
+import { SemanticToastContainer } from "react-semantic-toasts";
 
 import { Route, BrowserRouter as Router } from "react-router-dom";
 
@@ -13,6 +14,7 @@ export default () => (
     <Fragment>
       <Menu />
       <Container>
+        <SemanticToastContainer />
         <Route exact path="/" component={CompaniesIndex} />
         <Route exact path="/companies" component={CompaniesIndex} />
         <Route exact path="/companies/new" component={NewCompany} />
