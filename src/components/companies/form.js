@@ -10,6 +10,7 @@ import {
 import SemanticDatepicker from "react-semantic-ui-datepickers";
 import "react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css";
 import * as yup from "yup";
+import * as Toast from '../../utils/toastMessage'
 
 let schema = yup.object().shape({
   company_name: yup.string().required(),
@@ -40,7 +41,7 @@ class CompanyForm extends Component {
       .catch(err => {
         console.log(err);
         err.errors.forEach(error => {
-          this.renderMessage(err.name, error);
+          Toast.errorMessage(err.name, error);
         });
       });
   };
