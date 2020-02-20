@@ -1,14 +1,31 @@
 import React, { Component } from "react";
 import CompanyForm from "./form";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as companyActions from "../../actions/companiesActions";
 
 class NewCompany extends Component {
-  submit = (data) => {
-    console.log("Data", data)
-  }
+  submit = data => {
+    this.props.addCompany(data);
+  };
   render() {
-    let company = {}
-    return <CompanyForm onSubmit={this.submit} title='Add Company' company={company}/>;
+    let company = {};
+    return (
+      <CompanyForm
+        onSubmit={this.submit}
+        title="Add Company"
+        company={company}
+      />
+    );
   }
 }
 
-export default NewCompany;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      addCompany: companyActions.addCompany
+    },
+    dispatch
+  );
+
+export default connect(null, mapDispatchToProps)(NewCompany);

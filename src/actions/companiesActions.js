@@ -59,3 +59,15 @@ export const updateCompany = (id, data) => {
       });
   };
 };
+
+export const addCompany = (data) => {
+  return dispatch => {
+    return API.post('/companies/', data)
+      .then(response => {
+        return response.data
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
+};
