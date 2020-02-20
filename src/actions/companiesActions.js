@@ -2,6 +2,7 @@ import API from "../utils/API"
 import * as CONSTANTS from './types'
 import * as Toast from '../utils/toastMessage'
 
+
 export const fetchCompaniesSuccess = companies => {
   return {
     type: CONSTANTS.FETCH_COMPANIES_SUCCESS,
@@ -56,12 +57,12 @@ export const updateCompany = (id, data) => {
   };
 };
 
-export const addCompany = (data) => {
+export const addCompany = (data, callback) => {
   return dispatch => {
     return API.post('/companies/', data)
       .then(response => {
         Toast.successMessage('Success...', `Successfully created ${data.company_name}`)
-        return response.data
+        callback()
       })
       .catch(error => {
         Toast.errorMessage('Something went wrong...', 'Please contact support')
