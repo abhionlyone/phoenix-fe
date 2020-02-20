@@ -6,7 +6,7 @@ export function fetchCompanies(
 ) {
   switch (action.type) {
     case CONSTANTS.FETCH_COMPANIES_SUCCESS:
-      console.log(action.payload)
+      console.log(action.payload);
       return action.payload;
     default:
       return state;
@@ -16,7 +16,10 @@ export function fetchCompanies(
 export function fetchCompany(state = {}, action) {
   switch (action.type) {
     case CONSTANTS.FETCH_COMPANY_SUCCESS:
-      return action.payload;
+      return {
+        ...action.payload,
+        founded_date: new Date(action.payload.founded_date)
+      };
     default:
       return state;
   }
