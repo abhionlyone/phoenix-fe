@@ -8,9 +8,9 @@ export const fetchCompaniesSuccess = companies => {
   };
 };
 
-export const fetchCompanies = () => {
+export const fetchCompanies = (page=1) => {
   return dispatch => {
-    return API.get('/companies')
+    return API.get(`/companies?page=${page}`)
       .then(response => {
         let action = fetchCompaniesSuccess(response.data)
         dispatch(action);

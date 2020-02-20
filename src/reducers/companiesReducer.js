@@ -1,8 +1,12 @@
 import * as CONSTANTS from "../actions/types";
 
-export function fetchCompanies(state = [], action) {
+export function fetchCompanies(
+  state = { pagination: {}, companies: [] },
+  action
+) {
   switch (action.type) {
     case CONSTANTS.FETCH_COMPANIES_SUCCESS:
+      console.log(action.payload)
       return action.payload;
     default:
       return state;

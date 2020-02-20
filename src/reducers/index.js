@@ -3,7 +3,7 @@ import {fetchCompanies, fetchCompany} from './companiesReducer'
 
 export default asyncReducers => {
   return combineReducers({
-    companies: fetchCompanies,
+    companiesData: fetchCompanies,
     company: fetchCompany,
     ...asyncReducers
   });
