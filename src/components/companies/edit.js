@@ -3,18 +3,25 @@ import CompanyForm from "./form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as companyActions from "../../actions/companiesActions";
+import _ from 'lodash'
 class EditCompany extends Component {
   state = {
     company: {}
   };
-  submit = data => {};
+  submit = data => {console.log(data, "Will be submitted")};
   componentDidMount() {
     let { id } = this.props.match.params;
     this.props.fetchCompany(id);
   }
+
+  componentWillReceiveProps(props){
+    this.setState({company: props.company})
+  }
   
   render() {
-    console.log(this.props.company)
+    if(_.isEmpty(this.state.company)){
+      return <React.Fragment></React.Fragment>
+    }
     return (
       <CompanyForm
         onSubmit={this.submit}
