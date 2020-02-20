@@ -3,7 +3,7 @@ import CompanyForm from "./form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as companyActions from "../../actions/companiesActions";
-import _ from "lodash";
+import isEmpty from "lodash/isEmpty"
 class EditCompany extends Component {
   state = {
     company: {}
@@ -25,7 +25,7 @@ class EditCompany extends Component {
 
   render() {
     console.log(this.props);
-    if (_.isEmpty(this.state.company)) {
+    if (isEmpty(this.state.company)) {
       return <React.Fragment></React.Fragment>;
     }
     return (

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as companyActions from "../../actions/companiesActions";
 import { Link } from "react-router-dom";
+import get from 'lodash/get'
 
 class CompanyList extends React.Component {
   componentDidMount() {
@@ -37,11 +38,13 @@ class CompanyList extends React.Component {
   renderPagination = () => {
     if (this.props.companiesData) {
       let { pagination } = this.props.companiesData;
+      let pageCount = get(pagination, 'pages', 0)
+      let currentPage = get(pagination, 'page', 0)
       return (
         <Pagination
-          activePage={pagination.page}
+          activePage={currentPage}
           onPageChange={this.onPageChange}
-          totalPages={pagination.pages}
+          totalPages={pageCount}
           ellipsisItem={null}
         />
       );

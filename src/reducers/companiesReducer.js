@@ -6,7 +6,6 @@ export function fetchCompanies(
 ) {
   switch (action.type) {
     case CONSTANTS.FETCH_COMPANIES_SUCCESS:
-      console.log(action.payload);
       return action.payload;
     default:
       return state;
