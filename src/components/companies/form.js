@@ -36,20 +36,20 @@ class CompanyForm extends Component {
     schema
       .validate(company, { abortEarly: false })
       .then(value => {
-        this.props.onSubmit(company);
+        this.props.onSubmit(company, this.renderMessage);
       })
       .catch(err => {
-        console.log(err.errors);
+        console.log(err);
         err.errors.forEach(error => {
           this.renderMessage(err.name, error);
         });
       });
   };
 
-  renderMessage = (title, description) => {
+  renderMessage = (title, description, type = 'error') => {
     console.log(title, description);
     toast({
-      type: "error",
+      type: type,
       icon: "stop circle",
       title: title,
       description: description,

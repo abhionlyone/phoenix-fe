@@ -40,3 +40,22 @@ export const fetchCompany = (id) => {
       });
   };
 };
+
+// export const updateCompanySuccess = company => {
+//   return {
+//     type: CONSTANTS.UPDATE_COMPANY_SUCCESS,
+//     payload: company
+//   };
+// }
+
+export const updateCompany = (id, data) => {
+  return dispatch => {
+    return API.patch(`/companies/${id}`, data)
+      .then(response => {
+        return response.data
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
+};
