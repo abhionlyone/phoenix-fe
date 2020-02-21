@@ -12,9 +12,6 @@ export default () => (
         <Link to='/' className='item'>
           Home
         </Link>
-        <Menu.Item as="a" name="item 2">
-          link 2
-        </Menu.Item>
       </Menu.Menu>
     </Container>
   </Menu>

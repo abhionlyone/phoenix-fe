@@ -39,7 +39,6 @@ class CompanyForm extends Component {
         this.props.onSubmit(company);
       })
       .catch(err => {
-        console.log(err);
         err.errors.forEach(error => {
           Toast.errorMessage(err.name, error);
         });

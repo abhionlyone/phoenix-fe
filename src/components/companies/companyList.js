@@ -14,11 +14,6 @@ class CompanyList extends React.Component {
   renderCompany = company => {
     return (
       <Segment raised key={company.id}>
-        {/* <Link to={`/companies/edit/${company.id}`}>more</Link>
-        <h1>
-          {company.company_name} | {company.city}, {company.state}
-        </h1>
-        {company.description} */}
         <div className="ui grid">
           <div className="twelve wide column">
             <div className="ui grid">
@@ -34,7 +29,7 @@ class CompanyList extends React.Component {
           </div>
           <div className="four wide column">
             <h4>
-              <Link to={`/companies/edit/${company.id}`}>more...</Link>
+              <Link to={`/companies/show/${company.id}`}>more...</Link>
             </h4>
           </div>
           <div className="ui grid">
