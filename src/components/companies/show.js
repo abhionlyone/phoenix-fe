@@ -74,7 +74,7 @@ class ShowCompany extends Component {
                 </Header>
                 ,
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column textAlign='center'>
                 <Link to={`/companies/edit/${id}`}>
                   <Button icon labelPosition="right" color="blue">
                     <Icon name="edit" />
@@ -94,7 +94,7 @@ class ShowCompany extends Component {
             </Grid.Row>
           </Grid>
         </Segment>
-        <Segment>
+        <Segment style={{ minHeight: 250 }}>
           <p textAlign="justified">{description}</p>
         </Segment>
       </Segment>

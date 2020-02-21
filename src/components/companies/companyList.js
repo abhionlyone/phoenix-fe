@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import * as companyActions from "../../actions/companiesActions";
 import { Link } from "react-router-dom";
 import get from "lodash/get";
+import * as StringUtil from '../../utils/string' 
 
 class CompanyList extends React.Component {
   componentDidMount() {
@@ -34,7 +35,7 @@ class CompanyList extends React.Component {
           </div>
           <div className="ui grid">
             <div className="sixteen wide column">
-              <h5>{company.description}</h5>
+              <h5>{StringUtil.truncate(company.description, 500, '...')}</h5>
             </div>
           </div>
         </div>
