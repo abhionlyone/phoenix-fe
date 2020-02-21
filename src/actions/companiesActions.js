@@ -9,11 +9,12 @@ export const fetchCompaniesSuccess = companies => {
   };
 };
 
-export const fetchCompanies = (page = 1) => {
+export const fetchCompanies = (callback, page = 1) => {
   return dispatch => {
     return API.get(`/companies?page=${page}`)
       .then(response => {
         let action = fetchCompaniesSuccess(response.data);
+        callback()
         dispatch(action);
       })
       .catch(error => {

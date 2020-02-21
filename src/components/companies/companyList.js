@@ -5,13 +5,20 @@ import { bindActionCreators } from "redux";
 import * as companyActions from "../../actions/companiesActions";
 import { Link } from "react-router-dom";
 import get from "lodash/get";
-import * as StringUtil from '../../utils/string' 
+import * as StringUtil from "../../utils/string";
+import LoaderComp from "../loader";
 
 class CompanyList extends React.Component {
-  componentDidMount() {
-    this.props.fetchCompanies();
+  state = {
+    loader: true
   }
-
+  componentDidMount() {
+    this.props.fetchCompanies(this.toggleLoader);
+  }
+  
+  toggleLoader = () => {
+    this.setState({...this.state, loader: !this.state.loader})
+  }
   renderCompany = company => {
     return (
       <Segment raised key={company.id}>
@@ -35,7 +42,7 @@ class CompanyList extends React.Component {
           </div>
           <div className="ui grid">
             <div className="sixteen wide column">
-              <h5>{StringUtil.truncate(company.description, 500, '...')}</h5>
+              <h5>{StringUtil.truncate(company.description, 500, "...")}</h5>
             </div>
           </div>
         </div>
@@ -52,7 +59,8 @@ class CompanyList extends React.Component {
   };
 
   onPageChange = (e, page) => {
-    this.props.fetchCompanies(page.activePage);
+    this.toggleLoader()
+    this.props.fetchCompanies(this.toggleLoader, page.activePage);
   };
 
   renderPagination = () => {
@@ -72,6 +80,9 @@ class CompanyList extends React.Component {
   };
 
   render() {
+    if(this.state.loader){
+      return new Array(10).fill().map(() => <LoaderComp/>);
+    }
     return (
       <React.Fragment>
         {this.renderCompanies()}
