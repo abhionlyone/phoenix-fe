@@ -13,6 +13,7 @@ import {
 import isEmpty from "lodash/isEmpty";
 import { format } from "date-fns";
 import { Link, Redirect } from "react-router-dom";
+import Founders from "../founders";
 
 class ShowCompany extends Component {
   state = {
@@ -43,7 +44,7 @@ class ShowCompany extends Component {
     }
     let { redirect } = this.state;
     if (redirect) {
-      return <Redirect to='/' />;
+      return <Redirect to="/" />;
     }
     let {
       company_name,
@@ -54,50 +55,53 @@ class ShowCompany extends Component {
       id
     } = this.state.company;
     return (
-      <Segment raised style={{ minHeight: 500 }}>
-        <Container text>
-          <Header as="h2" textAlign="center">
-            {company_name}
-          </Header>
-        </Container>
-        <Segment>
-          <Grid divided="horizontally">
-            <Grid.Row columns={3}>
-              <Grid.Column>
-                <Header as="h4" textAlign="center">
-                  {format(founded_date, "MMMM do, yyy")}
-                </Header>
-              </Grid.Column>
-              <Grid.Column>
-                <Header as="h4" textAlign="center">
-                  {city}, {state}
-                </Header>
-                ,
-              </Grid.Column>
-              <Grid.Column textAlign='center'>
-                <Link to={`/companies/edit/${id}`}>
-                  <Button icon labelPosition="right" color="blue">
-                    <Icon name="edit" />
-                    Edit
+      <React.Fragment>
+        <Segment raised style={{ minHeight: 500 }}>
+          <Container text>
+            <Header as="h2" textAlign="center">
+              {company_name}
+            </Header>
+          </Container>
+          <Segment>
+            <Grid divided="horizontally">
+              <Grid.Row columns={3}>
+                <Grid.Column>
+                  <Header as="h4" textAlign="center">
+                    {format(founded_date, "MMMM do, yyy")}
+                  </Header>
+                </Grid.Column>
+                <Grid.Column>
+                  <Header as="h4" textAlign="center">
+                    {city}, {state}
+                  </Header>
+                  ,
+                </Grid.Column>
+                <Grid.Column textAlign="center">
+                  <Link to={`/companies/edit/${id}`}>
+                    <Button icon labelPosition="right" color="blue">
+                      <Icon name="edit" />
+                      Edit
+                    </Button>
+                  </Link>
+                  <Button
+                    icon
+                    labelPosition="right"
+                    color="red"
+                    onClick={this.deleteCompany}
+                  >
+                    Delete
+                    <Icon name="times rectangle" />
                   </Button>
-                </Link>
-                <Button
-                  icon
-                  labelPosition="right"
-                  color="red"
-                  onClick={this.deleteCompany}
-                >
-                  Delete
-                  <Icon name="times rectangle" />
-                </Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+          <Segment style={{ minHeight: 250 }}>
+            <p>{description}</p>
+          </Segment>
         </Segment>
-        <Segment style={{ minHeight: 250 }}>
-          <p textAlign="justified">{description}</p>
-        </Segment>
-      </Segment>
+        <Founders companyId={id}/>
+      </React.Fragment>
     );
   }
 }
